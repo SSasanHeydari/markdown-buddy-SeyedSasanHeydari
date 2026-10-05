@@ -1,0 +1,118 @@
+---
+title: "Technical Analysis - Script Documentation"
+author: "Seyed Sasan Heydari"
+date: "2026-10-05"
+output: html_document
+---
+
+# AI Assistance Declaration
+
+AI Assistance Declaration: I used ChatGPT (OpenAI) for documentation planning, Markdown formatting, writing assistance, and review. I verified the outputs by manually running the R script in RStudio, checking the calculated values and generated chart, and reviewing the rendered document. All final calculations were verified by myself. I am responsible for the accuracy and originality of this work.
+
+# Purpose
+
+The purpose of `analysis.R` is to demonstrate a simple data analysis workflow in R using synthetic monthly sales and expense data.
+
+The script:
+
+- Creates a synthetic dataset.
+- Calculates monthly profit.
+- Generates summary statistics.
+- Calculates average sales and average profit.
+- Produces a visualization of monthly sales.
+
+# Inputs
+
+The script does not read data from an external file. All data is created directly in R.
+
+The synthetic dataset contains three initial variables:
+
+- `Month` - Month name.
+- `Sales` - Synthetic monthly sales value.
+- `Expenses` - Synthetic monthly expense value.
+
+The dataset is created with the following R code:
+
+```{r create-data}
+sales_data <- data.frame(
+  Month = c("January", "February", "March", "April", "May", "June"),
+  Sales = c(120, 150, 135, 180, 210, 195),
+  Expenses = c(80, 95, 90, 110, 125, 120)
+)
+
+sales_data
+```
+
+# Processing
+
+## Calculate Monthly Profit
+
+A new variable called `Profit` is calculated by subtracting expenses from sales.
+
+```{r calculate-profit}
+sales_data$Profit <- sales_data$Sales - sales_data$Expenses
+sales_data
+```
+
+## Summary Statistics
+
+The `summary()` function is used to inspect the dataset.
+
+```{r summary-statistics}
+summary(sales_data)
+```
+
+## Calculate Average Values
+
+Average sales and average profit are calculated using the `mean()` function.
+
+```{r averages}
+average_sales <- mean(sales_data$Sales)
+average_profit <- mean(sales_data$Profit)
+
+average_sales
+average_profit
+```
+
+# Visualization
+
+The following code creates a basic line-and-point chart showing the synthetic monthly sales values.
+
+```{r sales-chart}
+plot(
+  sales_data$Sales,
+  type = "b",
+  main = "Synthetic Monthly Sales",
+  xlab = "Month",
+  ylab = "Sales"
+)
+```
+
+# Outputs
+
+Running the analysis produces:
+
+- A dataset containing 6 observations and 4 variables after the `Profit` variable is added.
+- Monthly profit values for January through June.
+- Summary statistics for the dataset.
+- Average sales of `165`.
+- Average profit of approximately `61.67`.
+- A chart titled **Synthetic Monthly Sales**.
+
+# Verification and Refinement
+
+The original `analysis.R` script was manually executed in RStudio using R 4.6.1.
+
+The following results were verified:
+
+- The script executed successfully.
+- The dataset contained 6 observations and 4 variables after profit was calculated.
+- Average sales were `165`.
+- Average profit was `61.66667`, or approximately `61.67`.
+- The sales visualization rendered successfully.
+
+The documentation was organized into Purpose, Inputs, Processing, Visualization, Outputs, and Verification sections to improve readability. Code chunks were added so that the documented analysis could be executed and checked directly in R Markdown.
+
+# Conclusion
+
+This script demonstrates a basic R analysis workflow using synthetic data. It shows how data can be created, transformed, summarized, and visualized while maintaining clear and reproducible documentation.
